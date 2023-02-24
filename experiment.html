@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+</head>
+<body>
+    <svg width="100%" height="100%" viewBox="0 0 800 800" id="map">
+  
+        <path data-section-id="Afghanistan" d="M600,200 L700,300 L700,400 L600,400 Z"/>
+        <path data-section-id="Albania" d="M500,300 L600,200 L600,400 L500,400 Z"/>
+        <path data-section-id="Algeria" d="M400,400 L500,300 L500,400 L400,400 Z"/>
+        <path data-section-id="Angola" d="M600,400 L700,400 L700,500 L600,500 Z"/>
+        
+      </svg>
+      
+      <div id="modal">
+        <p id="country-info"></p>
+        <img id="country-image"/>
+      </div>
+      
+      <script>
+      const countryInfo = {
+          Afghanistan: {
+              information: "Afghanistan is a landlocked country located in South Asia and Central Asia. It has been in a state of political and economic turmoil for decades, with the Soviet-Afghan War and the ongoing War in Afghanistan being the most notable conflicts. Kabul is the capital and largest city of Afghanistan.",
+              image: "https://cdn.britannica.com/40/5340-004-B25ED5CF/Flag-Afghanistan.jpg"
+          },
+          Albania: {
+              information: "Albania is a country located in the Balkans region of Europe. It declared independence from the Ottoman Empire in 1912, and has a long history of political turmoil and economic struggles. Tirana is the capital and largest city of Albania.",
+              image: "albania.png"
+          },
+          Algeria: {
+              information: "Algeria is a country located in North Africa. It declared independence from France in 1962, after a long and bloody war. Algeria is a major producer of oil and natural gas. Algiers is the capital and largest city of Algeria.",
+              image: ""
+          },
+          Angola: {
+              information: "Angola is a country located in Southern Africa. It declared independence from Portugal in 1975, after a long and bloody war. Angola is a major producer of oil. Luanda is the capital and largest city of Angola.",
+              image: ""
+          },
+      };
+      
+      const modal = document.getElementById("modal");
+      const countryInfoElem = document.getElementById("country-info");
+      const countryImageElem = document.getElementById("country-image");
+      
+      const hideModal = () => {
+        modal.style.display = "none";
+      };
+      
+      const showModal = () => {
+        modal.style.display = "block";
+      };
+      
+      const updateModal = (country) => {
+        countryInfoElem.innerText = countryInfo[country].information;
+        countryImageElem.src = countryInfo[country].image;
+      };
+      
+      document.getElementById("map").addEventListener("click", (event) => {
+        const sectionId = event.target.getAttribute("data-section-id");
+        
+        if (sectionId) {
+          showModal();
+          updateModal(sectionId);
+        } else {
+          hideModal();
+        }
+      });
+</script>      
+    
+</body>
+</html>
